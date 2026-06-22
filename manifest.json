@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Web Request Trace",
+  "version": "1.0.0",
+  "description": "点击页面元素，追溯它的数据来自后端哪个接口",
+  "action": {
+    "default_title": "点击切换数据溯源总开关"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["<all_urls>"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
